@@ -1,0 +1,22 @@
+.planeheader {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+}
+
+.logo {
+    width: 22rem;
+    height: 6rem;
+    padding-left: 10px;
+}
+
+.planeheader-menu {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    color: white;
+}
+
+
+/* Changes the color on hover */
+/* When cursor is hovered over this list then it changes to pointer */

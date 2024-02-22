@@ -1,0 +1,13 @@
+.sb{
+    display: flex;
+    justify-content: space-between;
+    background-color: blueviolet;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.sinput-container{
+    position: relative;
+    display: block;
+    margin: auto;
+}
