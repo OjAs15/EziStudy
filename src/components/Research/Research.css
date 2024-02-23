@@ -3,11 +3,10 @@
     padding-top: 1.5rem;
     flex: auto;
     background-image: url('../../assets/bgim.jpg');
-    /* background-image: url('../../assets/bgim2.jpg'); */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    height: 100vh;
+    height: 100%;
 }
 
 .searchbar{
@@ -102,8 +101,9 @@ label {
     overflow: hidden;
 }
 
-.main-display{
+.main-display {
     display: flex;
+    flex-direction: column;
     text-align: center;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
@@ -116,7 +116,104 @@ label {
     margin-top: 20px;
 }
 
+.output-display {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    backdrop-filter: blur(30px);
+    color: #fff;
+    border-radius: 20px;
+    height: 13vh;
+    margin: 15px;
+    
+}
+
 h2 {
     text-align: center;
     margin: 50px;
 }
+
+
+/* -----------------------------button css--------------------------------------- */
+
+.view-button {
+    display:flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    padding-left: 90%;
+}
+
+.btn-re{
+    line-height: 50px;
+    height: 100px;
+    text-align: center;
+    width: 250px;
+    cursor: pointer;
+    color: #ffffff;
+    transition: all 0.5s;
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-decoration: none;
+    
+}
+
+.btn-re::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+    transition: all 0.3s;
+}
+
+.btn-re:hover::before {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+}
+
+.btn-re::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transform: scale(1.2, 1.2);
+    border-radius: 7px;
+}
+
+.btn-re:hover::after {
+    opacity: 1;
+    transform: scale(1, 1);
+}
+
+
+/*---------------------------------------------*/
+
+.sr-re{
+    display: flex;
+    position: relative;
+}
+
+.title-re{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%;
+} 
