@@ -6,7 +6,6 @@ const Summary = (props) => {
 
     return (
         <div className='wrapper'>
-
             <div className='output-display'>
                 <div><h2 className='sr-re'>{id}</h2></div>
                 <div><h2 className='title-re'>{name}</h2></div>
@@ -16,7 +15,6 @@ const Summary = (props) => {
                     </Link>
                 </div>
             </div>
-
         </div>
     );
 };

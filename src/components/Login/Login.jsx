@@ -1,58 +1,70 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './Login.css';
 import Logo from '../../assets/logo.png';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import {FaUser} from "react-icons/fa";
-import {FaLock} from "react-icons/fa";
-
-
+import { FaUser } from "react-icons/fa";
+import { FaLock } from "react-icons/fa";
 
 const Login = () => {
-  return (
-    <div className='body1'>
-        <div className='login-main'>
-          <img src={Logo} alt="" className='logo1' />
-          {/* <form action="" style={{ background: 'transparent' }} className='formbox'> */}
-            <h1>ADMIN</h1>
-            
-            <div className='input-box'>
-                <input type='text' placeholder='Username' required/>
-                <FaUser className='icon'/>
+    const usernameRef = useRef(null);
+    const passwordRef = useRef(null);
+    const navigate = useNavigate();
+
+    const handleSubmit = async () => {
+        const payload = {
+            username: usernameRef.current.value,
+            password: passwordRef.current.value
+        };
+
+        // Directly redirecting...
+        return navigate("/Admin");
+
+
+        try {
+            const response = await fetch('http://localhost:8000/admin/signin', {
+                method: "POST",
+                body: JSON.stringify(payload)
+            });
+            const result = await response.json()
+            console.log('success', result);
+        } catch (error) {
+            console.error("Error: ", error);
+        }
+    };
+
+    return (
+        <div className='body1'>
+            <div className='login-main'>
+                <img src={Logo} alt="" className='logo1' />
+                <h1>ADMIN</h1>
+
+                <div className='input-box'>
+                    <input ref={usernameRef} type='text' placeholder='Username' name='username' required />
+                    <FaUser className='icon' />
+                </div>
+
+                <div className='input-box'>
+                    <input ref={passwordRef} type='password' placeholder='Password' name='password' required />
+                    <FaLock className='icon' />
+                </div>
+
+                <div className='remember'>
+                    <label><input type='checkbox' />Remember me</label>
+                </div>
+
+                <div className='container'>
+                    <div onClick={handleSubmit} class="button type--C">
+                        <div class="button__line"></div>
+                        <div class="button__line"></div>
+                        <buttons className='button__text'>submit</buttons>
+                        <div class="button__drow1"></div>
+                        <div class="button__drow2"></div>
+                    </div>
+                </div>
             </div>
-
-            <div className='input-box'>
-                <input type='password' placeholder='Password' required />
-                <FaLock className='icon'/>
-            </div>
-
-            <div className='remember'>
-                <label><input type='checkbox'/>Remember me</label>
-                {/* <a href='#'>Forgot Password?</a> */}
-            </div>
-
-            {/* -------------------------------------------------------------------------------------------------------------- */}
-
-            <div className='container'>
-            {/* <a href" class="button type--C"> */}
-            {/* <a class="button type--C"> */}
-              <Link to='/Admin' class="button type--C">
-              <div class="button__line"></div>
-              <div class="button__line"></div>
-              {/* //<span class="button__text">SUBMIT</span> */}
-              <buttons className='button__text'>submit</buttons>
-              <div class="button__drow1"></div>
-              <div class="button__drow2"></div>
-              {/* </a> */}
-              </Link>
-            </div>  
-
-
-            {/* -------------------------------------------------------------------------------------------------------------- */}
-        {/* </form> */}
-      </div>
-    </div>
-  )
+        </div>
+    )
 }
 
 export default Login

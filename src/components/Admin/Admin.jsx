@@ -17,7 +17,7 @@ const Admin = () => {
         const formData = new FormData();
         formData.append('pdf', file);
         fetch(
-            'http://127.0.0.1:8000/user/pdfupload', // Corrected URL
+            'http://127.0.0.1:8000/user/upload', // Corrected URL
             {
                 method: "POST",
                 body: formData
