@@ -13,21 +13,24 @@ const Login = () => {
 
     const handleSubmit = async () => {
         const payload = {
-            username: usernameRef.current.value,
+            email: usernameRef.current.value,
             password: passwordRef.current.value
         };
 
         // Directly redirecting...
-        return navigate("/Admin");
 
 
+        console.log(payload);
         try {
             const response = await fetch('http://localhost:8000/admin/signin', {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify(payload)
             });
             const result = await response.json()
-            console.log('success', result);
+            if (result.isAdmin) navigate("/Admin");
         } catch (error) {
             console.error("Error: ", error);
         }

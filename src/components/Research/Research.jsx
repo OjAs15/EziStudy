@@ -33,7 +33,7 @@ const Research = () => {
         {
             id: "1",
             name: "AIML",
-            sum: "Auto"
+            sum: "Auto a;lsdjf ;lajdsf ;alsdhfh klajsdhf akls hdf kjaslhdf hlaksdhad sf Auto a;lsdjf ;lajdsf ;alsdhfh klajsdhf akls hdf kjaslhdf hlaksdhad sf Auto a;lsdjf ;lajdsf ;alsdhfh klajsdhf akls hdf kjaslhdf hlaksdhad sf"
         },
         {
             id: "2",
