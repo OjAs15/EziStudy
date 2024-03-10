@@ -30,6 +30,8 @@ const Login = () => {
                 body: JSON.stringify(payload)
             });
             const result = await response.json()
+            localStorage.setItem('jwt', result.token);
+
             if (result.isAdmin) navigate("/Admin");
         } catch (error) {
             console.error("Error: ", error);

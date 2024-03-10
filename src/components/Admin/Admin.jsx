@@ -13,14 +13,18 @@ const Admin = () => {
     }
 
     function handleUpload(event) {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault();
         const formData = new FormData();
         formData.append('pdf', file);
+
         fetch(
-            'http://127.0.0.1:8000/user/upload', // Corrected URL
+            'http://127.0.0.1:8000/admin/upload',
             {
                 method: "POST",
-                body: formData
+                body: formData,
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem('jwt')}`
+                }
             }
         ).then((response) => response.json())
             .then((result) => {
