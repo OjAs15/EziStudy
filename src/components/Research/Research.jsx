@@ -1,33 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import './Research.css'
 import Header from '../Header/Header';
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Summary from '../Summary/Summary';
 
 
 const Research = () => {
-    // ------
-    // const [data, setData] = useState(null);
-    // const [error, setError] = useState(null);
+    const [search, setSearch] = useSearchParams();
+    const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
 
-    // useEffect(() => {
-    //   // Fetch data from backend when component mounts
-    //   fetchData();
-    // }, []);
+    useEffect(() => {
+        const { search: query } = Object.fromEntries(
+            new URLSearchParams(search)
+        );
 
-    // const fetchData = async () => {
-    //   try {
-    //     const response = await fetch('http://localhost:3000/api/data'); // Replace URL with your backend endpoint
-    //     if (!response.ok) {
-    //       throw new Error('Network response was not ok');
-    //     }
-    //     const jsonData = await response.json();
-    //     setData(jsonData);
-    //   } catch (error) {
-    //     setError(error.message);
-    //   }
-    // };
-    // -------
+        // Fetch data from backend when component mounts
+        fetchData(query);
+    }, []);
+
+    const fetchData = async (query) => {
+        try {
+            const response = await fetch(`http://localhost:8000/user/gettopsummaries?queryText=${query}`); // Replace URL with your backend endpoint
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const jsonData = await response.json();
+            setData(jsonData);
+        } catch (error) {
+            setError(error.message);
+        }
+    };
 
     const summarys = [
         {
@@ -52,17 +55,17 @@ const Research = () => {
             <Header />
 
             <div className='searchbar'>
-                <form onsubmit="event.preventDefault();" role="search">
+                <form role="search">
                     <label for="search">Search for stuff</label>
-                    <input id="search" type="search" placeholder="Search your paper!" autofocus required />
+                    <input id="search" type="search" name='search' placeholder="Search your paper!" autofocus required />
                     <button type="submit">Go</button>
                 </form>
 
             </div>
             <div className='main-display'>
 
-                {summarys.map(summary => (
-                    <Summary key={summary.id} id={summary.id} name={summary.name} sum={summary.sum} />
+                {data?.map((s, index) => (
+                    <Summary key={s._id} id={index + 1} name={s.title ?? `Research Paper ${index + 1}`} sum4={s.summary400} sum6={s.summary600} />
                 ))}
 
 

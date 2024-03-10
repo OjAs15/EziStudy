@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Summary = (props) => {
-    const { id, name, sum } = props;
+const Summary = ({ id, name, sum4, sum6 }) => {
     const [show, setShow] = useState(false);
 
     return (
@@ -17,7 +16,7 @@ const Summary = (props) => {
                 </div>
             </div>
             <div className={`summary ${show ? "show-summary" : null}`}>
-                <span>{sum}</span>
+                <span>{sum4}</span>
             </div>
         </div>
     );
